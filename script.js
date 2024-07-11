@@ -1,7 +1,40 @@
 let humanScore = 0;
 let computerScore = 0;
+let count = 0;
 
-let playerChoice = "rock";
+let playerChoice = "placeholder";
+
+var rock_el = document.getElementById('rock');
+var paper_el = document.getElementById('paper');
+var scissors_el = document.getElementById('scissors');
+
+rock_el.addEventListener('click', function() {
+    playerChoice = "rock";
+    logChoice();
+});
+
+paper_el.addEventListener('click', function() {
+    playerChoice = "paper";
+    logChoice();
+});
+
+scissors_el.addEventListener('click', function() {
+    playerChoice = "scissors";
+    logChoice();
+});
+
+function logChoice() {
+    if(count == 5) {
+        document.getElementsByClassName('screen')[0].innerText = "Restarting...";
+        count = 0;
+        humanScore = 0;
+        computerScore = 0;
+        return;
+    }
+    count++;
+    playRound(playerChoice, getComputerChoice());
+    
+};
 
 function getComputerChoice() {
     const choices = ["rock", "paper", "scissors"];
@@ -12,70 +45,47 @@ function playRound(humanChoice, computerChoice) {
     humanChoice = humanChoice.toLowerCase();
     computerChoice = computerChoice.toLowerCase();
 
+
     if(humanChoice == computerChoice) {
-        console.log("You Tie!");
+        document.getElementsByClassName('screen')[0].innerText = "You Tie!";
     }
 
     if(humanChoice == "rock") {
         if(computerChoice == "paper") {
-            console.log("You lose! " + humanChoice + " loses to " + computerChoice);
+            document.getElementsByClassName('screen')[0].innerText = "You lose! " + humanChoice + " loses to " + computerChoice;
             computerScore++;
         }
         if(computerChoice == "scissors") {
-            console.log("You win! " + humanChoice + " beats " + computerChoice);
+            document.getElementsByClassName('screen')[0].innerText = "You win! " + humanChoice + " beats " + computerChoice;
             humanScore++;
         }
     } else if(humanChoice == "paper") {
         if(computerChoice == "scissors") {
-            console.log("You lose! " + humanChoice + " loses to " + computerChoice);
+            document.getElementsByClassName('screen')[0].innerText = "You lose! " + humanChoice + " loses to " + computerChoice;
             computerScore++;
         }
         if(computerChoice == "rock") {
-            console.log("You win! " + humanChoice + " beats " + computerChoice);
+            document.getElementsByClassName('screen')[0].innerText = "You win! " + humanChoice + " beats " + computerChoice;
             humanScore++;
         }
     } else if(humanChoice == "scissors") {
         if(computerChoice == "rock") {
-            console.log("You lose! " + humanChoice + " loses to " + computerChoice);
+            document.getElementsByClassName('screen')[0].innerText = "You lose! " + humanChoice + " loses to " + computerChoice;
             computerScore++;
         }
         if(computerChoice == "paper") {
-            console.log("You win! " + humanChoice + " beats " + computerChoice);
+            document.getElementsByClassName('screen')[0].innerText = "You win! " + humanChoice + " beats " + computerChoice;
             humanScore++;
         }
     }
-};
-
-
-function playGame() {
-    for (i = 0; i < 5; i++) {
-        playRound(getPlayerChoice(), getComputerChoice());
-    }
-
-    console.log("Player: " + humanScore + " | Computer: " + computerScore);
     
+    if(count == 5) {
+        document.getElementsByClassName('screen')[0].innerText = "Player Score: " + humanScore + " | Computer Score: " + computerScore;
+    }
 };
 
-screenEl = document.getElementsByClassName("screen").text;
-// element1 = document.getElementById("rock");
-// const element2 = document.getElementById('paper');
-// const element3 = document.getElementById('scissors');
+////////////////////////////////////////////////////////////////////////
 
-// element1.addEventListener("click", function() {
-//     playerChoice = "rock";
-// });
-// element2.addEventListener('click', function() {
-//     playerChoice = "paper";
-// });
-// element3.addEventListener('click', function() {
-//     playerChoice = "scissors";
-// });
-
-console.log(playerChoice);
-
-screenEl = playerChoice;
-
-// playGame();
 
 
 
