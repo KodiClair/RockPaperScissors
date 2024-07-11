@@ -80,7 +80,7 @@ function playRound(humanChoice, computerChoice) {
     }
     
     if(count == 5) {
-        document.getElementsByClassName('screen')[0].innerText = "Player Score: " + humanScore + " | Computer Score: " + computerScore;
+        document.getElementsByClassName('screen')[0].innerText = "Player Score: " + humanScore + " Computer Score: " + computerScore;
     }
 };
 
